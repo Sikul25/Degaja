@@ -1,6 +1,7 @@
-document.addEventListener('DOMContentLoaded',()=>{
-  const link=document.createElement('link');link.rel='stylesheet';link.href='brand.css';document.head.appendChild(link);
-  if(typeof shopProducts==='undefined') return;
+/* DEGAJA Shop – additional products. Loaded after script.js, so initialise immediately. */
+(function(){
+  const brandCss=document.createElement('link');brandCss.rel='stylesheet';brandCss.href='brand.css';document.head.appendChild(brandCss);
+  if(typeof shopProducts==='undefined' || typeof renderShop!=='function') return;
   const extra=[
     {id:'energy-oil',category:'glueck',name:'DEGAJA Energy Öl',subtitle:'Balance & Intention',price:39.00,tag:'ENERGIE',personal:true,description:'Ein stilvolles Körperöl für bewusste Wohlfühlmomente und persönliche Rituale.'},
     {id:'harmony-candle',category:'glueck',name:'DEGAJA Harmony Kerze',subtitle:'Balance & Harmonie',price:34.00,tag:'KERZE',personal:false,description:'Eine elegante Duftkerze für eine ruhige, harmonische Atmosphäre.'},
@@ -21,6 +22,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   ];
   const existing=new Set(shopProducts.map(p=>p.id));
   extra.forEach(p=>{if(!existing.has(p.id))shopProducts.push(p)});
-  if(typeof renderShop==='function') renderShop('all');
+  renderShop('all');
   if(typeof saveCart==='function') saveCart();
-});
+})();
