@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  const link=document.createElement('link');link.rel='stylesheet';link.href='brand.css';document.head.appendChild(link);
   if(typeof shopProducts==='undefined') return;
   const extra=[
     {id:'energy-oil',category:'glueck',name:'DEGAJA Energy Öl',subtitle:'Balance & Intention',price:39.00,tag:'ENERGIE',personal:true,description:'Ein stilvolles Körperöl für bewusste Wohlfühlmomente und persönliche Rituale.'},
