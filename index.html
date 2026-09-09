@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DEGAJA – Dein modernes Orakel für Tarot, Liebe, Sterne und Zahlen.">
+  <title>DEGAJA – Deine Zukunft. Deine Antworten.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky-glow"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="DEGAJA Startseite"><span>✦</span> DEGAJA</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#orakel">Orakel</a><a href="#tarot">Tarot</a><a href="#sterne">Sterne</a><a href="#zahlen">Zahlen</a>
+    </nav>
+    <button class="login-btn" id="loginBtn">Anmelden</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+      <div class="hero-copy">
+        <div class="eyebrow">✧ DEIN MOMENT DER KLARHEIT ✧</div>
+        <h1>Was hält die<br><em>Zukunft</em> für dich bereit?</h1>
+        <p>Stelle deine Frage. Ziehe deine Karten. Entdecke neue Perspektiven auf Liebe, Leben und das, was vor dir liegt.</p>
+        <div class="hero-actions"><button class="primary" data-scroll="#orakel">✨ Jetzt Orakel starten</button><button class="secondary" data-scroll="#tarot">Kostenlos ausprobieren</button></div>
+        <div class="trust"><span>✦</span> Kostenlos starten · Ohne Kreditkarte · Für Unterhaltung & Inspiration</div>
+      </div>
+      <div class="hero-oracle" aria-hidden="true">
+        <div class="sun"><span>☼</span></div><div class="moon">☾</div>
+        <div class="orb"><div class="orb-inner">✦<small>DEGAJA</small></div></div>
+        <span class="star s1">✦</span><span class="star s2">✧</span><span class="star s3">✦</span>
+      </div>
+    </section>
+
+    <section id="orakel" class="section">
+      <div class="section-head"><div><span class="eyebrow">DEIN ORAKEL</span><h2>Wähle deine Frage</h2></div><p>Ein kleiner Moment für dich. Wähle eine Legung und lass dich überraschen.</p></div>
+      <div class="oracle-grid">
+        <button class="oracle-card featured" data-reading="tarot"><span class="icon">🃏</span><h3>Tarot</h3><p>3 Karten · Vergangenheit, Gegenwart & Zukunft</p><b>Jetzt ziehen →</b></button>
+        <button class="oracle-card" data-reading="love"><span class="icon">♡</span><h3>Liebesorakel</h3><p>Was sagt dein Herz?</p><b>Entdecken →</b></button>
+        <button class="oracle-card" data-reading="yesno"><span class="icon">☼</span><h3>Ja oder Nein</h3><p>Eine klare Antwort auf deine Frage</p><b>Fragen →</b></button>
+        <button class="oracle-card" data-reading="daily"><span class="icon">☀</span><h3>Tagesorakel</h3><p>Deine Botschaft für heute</p><b>Öffnen →</b></button>
+      </div>
+    </section>
+
+    <section id="tarot" class="reading-section">
+      <div class="reading-panel">
+        <div><span class="eyebrow">TAROT</span><h2>Ziehe drei Karten.</h2><p>Konzentriere dich auf eine Frage und entdecke deine persönliche Legung.</p></div>
+        <button class="primary" id="drawBtn">🃏 Karten ziehen</button>
+        <div class="cards" id="cards"><div class="tarot-card">?</div><div class="tarot-card">?</div><div class="tarot-card">?</div></div>
+        <div class="reading-result" id="readingResult">Deine Karten warten auf dich.</div>
+      </div>
+    </section>
+
+    <section id="sterne" class="section compact"><div class="section-head"><div><span class="eyebrow">STERNE</span><h2>Dein Sternzeichen</h2></div><p>Wähle dein Zeichen und erhalte eine kleine Tagesbotschaft.</p></div><div class="zodiac-grid" id="zodiacGrid"></div></section>
+
+    <section id="zahlen" class="section number-section"><div class="number-box"><span class="eyebrow">NUMEROLOGIE</span><h2>Was sagen deine Zahlen?</h2><p>Gib dein Geburtsdatum ein und entdecke deine Lebenszahl.</p><div class="number-form"><input id="birthdate" type="date" aria-label="Geburtsdatum"><button class="primary" id="numberBtn">Berechnen</button></div><div id="numberResult"></div></div></section>
+
+    <section class="section features"><div class="section-head"><div><span class="eyebrow">MEHR ENTDECKEN</span><h2>Dein persönliches Universum</h2></div></div><div class="feature-grid"><button class="feature" data-reading="dream">☁️ <strong>Traumdeutung</strong><span>Was könnte dein Traum bedeuten?</span></button><button class="feature" data-reading="soulmate">💫 <strong>Seelenverbindung</strong><span>Wie stark ist eure Verbindung?</span></button><button class="feature" data-reading="wheel">🎡 <strong>Glücksrad</strong><span>Überlasse es dem Schicksal.</span></button></div></section>
+  </main>
+
+  <footer><div class="brand">✦ DEGAJA</div><p>Deine Zukunft. Deine Antworten.</p><div class="footer-links"><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a><a href="#">Kontakt</a></div><small>DEGAJA dient der Unterhaltung, Inspiration und persönlichen Reflexion. Keine wissenschaftliche oder medizinische Beratung.</small></footer>
+
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
