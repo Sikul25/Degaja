@@ -1,0 +1,24 @@
+document.addEventListener('DOMContentLoaded',()=>{
+const extra=[
+{id:'zodiac-necklace',category:'persoenlich',name:'DEGAJA Zodiac Necklace',subtitle:'Personalisiertes Sternzeichen-Schmuckstück',price:44.90,tag:'SCHMUCK',icon:'♈',personal:true,description:'Elegantes Schmuckstück mit deinem Sternzeichen und optionaler persönlicher Gravur.'},
+{id:'lucky-bracelet',category:'glueck',name:'DEGAJA Lucky Bracelet',subtitle:'Glück & positive Intention',price:29.90,tag:'GLÜCK',icon:'✦',personal:true,description:'Ein stilvolles Armband als persönliches Symbol für Glück, Zuversicht und deine tägliche Intention.'},
+{id:'love-candle',category:'glueck',name:'Love Ritual Candle',subtitle:'Liebe · Harmonie · Neubeginn',price:24.90,tag:'LOVE',icon:'♡',personal:false,description:'Eine elegante Duftkerze für einen bewussten Moment rund um Liebe, Harmonie und Neubeginn.'},
+{id:'dream-journal',category:'persoenlich',name:'DEGAJA Dream Journal',subtitle:'Deine Träume · Deine Gedanken',price:22.90,tag:'JOURNAL',icon:'☾',personal:true,description:'Hochwertiges Journal zum Festhalten deiner Träume, Gedanken und persönlichen Reflexionsmomente.'},
+{id:'personal-tarot',category:'tarot',name:'Meine Tarotkarte',subtitle:'Personalisierte Tarot-Karte',price:19.90,tag:'PERSONAL',icon:'🃏',personal:true,description:'Eine individuell gestaltete Tarot-Karte mit deinem Namen und einer persönlichen Botschaft.'},
+{id:'zodiac-box',category:'geschenke',name:'Zodiac Gift Box',subtitle:'Dein Sternzeichen · Dein Geschenk',price:59.90,tag:'GESCHENK',icon:'✦',personal:true,description:'Eine hochwertige Geschenkbox mit Sternzeichen-Thema und persönlicher Widmung.'},
+{id:'new-beginning-box',category:'geschenke',name:'New Beginning Box',subtitle:'Für einen neuen Lebensabschnitt',price:54.90,tag:'NEUBEGINN',icon:'☀',personal:true,description:'Eine liebevoll zusammengestellte Box für einen persönlichen Neubeginn, mit optionaler Widmung.'},
+{id:'tarot-cloth',category:'tarot',name:'DEGAJA Tarot Tuch',subtitle:'Premium Reading Mat',price:27.90,tag:'TAROT',icon:'✧',personal:false,description:'Elegantes Reading-Tuch als stilvolle Grundlage für deine Tarot-Legungen.'}
+];
+const grid=document.getElementById('shopGrid');
+if(!grid)return;
+function card(p){return `<article class="product-card extra-shop-product" data-extra-product="${p.id}" data-category="${p.category}"><button class="product-image-button" data-extra-open="${p.id}" aria-label="${p.name} ansehen"><div class="product-visual"><div style="font-size:58px;color:#c99a4a">${p.icon}</div></div></button><div class="product-body"><span class="product-tag">${p.tag}</span><h3>${p.name}</h3><p><b>${p.subtitle}</b><br>${p.description}</p><div class="product-bottom"><span class="product-price">${p.price.toFixed(2).replace('.',',')} €</span><button class="primary" data-extra-open="${p.id}">${p.personal?'Personalisieren':'Ansehen'}</button></div>${p.personal?'<div class="product-personal">✦ Personalisierbar</div>':''}</div></article>`}
+function add(){grid.querySelectorAll('.extra-shop-product').forEach(x=>x.remove());extra.forEach(p=>grid.insertAdjacentHTML('beforeend',card(p)));grid.querySelectorAll('[data-extra-open]').forEach(b=>b.onclick=()=>openExtra(b.dataset.extraOpen))}
+function openExtra(id){const p=extra.find(x=>x.id===id);if(!p)return;openModal(`<span class="eyebrow">DEGAJA SHOP · ${p.tag}</span><h2>${p.name}</h2><p><b>${p.subtitle}</b></p><div class="personal-preview"><span style="font-size:60px;color:#c99a4a">${p.icon}</span></div><p>${p.description}</p>${p.personal?`<div class="personal-form"><label>Name</label><input id="extraName" placeholder="Dein Name"><label>Sternzeichen</label><input id="extraZodiac" placeholder="z. B. Löwe"><label>Persönliche Botschaft</label><textarea id="extraMessage" placeholder="Deine persönliche Botschaft oder Widmung"></textarea></div>`:''}<button class="primary" onclick="addExtraToCart('${p.id}')">🛒 In den Warenkorb · ${p.price.toFixed(2).replace('.',',')} €</button><p style="font-size:11px;margin-top:14px">Demo-Shop – Zahlung und Versand werden später mit einem echten Commerce-Anbieter verbunden.</p>`)}
+window.addExtraToCart=id=>{const p=extra.find(x=>x.id===id);if(!p)return;cart.push({id:p.id,name:p.name,price:p.price,personal:p.personal,custom:p.personal?{name:document.getElementById('extraName')?.value||'',zodiac:document.getElementById('extraZodiac')?.value||'',message:document.getElementById('extraMessage')?.value||''}:null});saveCart();closeModal();openCart()};
+const originalRender=window.renderShop;
+if(typeof originalRender==='function'){
+const wrapped=category=>{originalRender(category);add();const wanted=category||'all';grid.querySelectorAll('.extra-shop-product').forEach(c=>c.style.display=(wanted==='all'||c.dataset.category===wanted)?'':'none')};
+window.renderShop=wrapped;
+}
+setTimeout(add,50);
+});
